@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>e1c020c2-ab18-447a-8f48-35dce88d191b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Proyecto3_OpenGL.py</StartupFile>
+    <StartupFile>RendererOpenGL.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,39 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Proyecto3_OpenGL.py" />
+    <Compile Include="gl.py" />
+    <Compile Include="Model.py" />
+    <Compile Include="obj.py" />
+    <Compile Include="RendererOpenGL.py" />
+    <Compile Include="shaders.py" />
+    <Compile Include="Skybox.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="argonath.bmp" />
+    <Content Include="argonath.obj" />
+    <Content Include="dardo.obj" />
+    <Content Include="dardo.bmp" />
+    <Content Include="env\negx.jpg" />
+    <Content Include="env\negy.jpg" />
+    <Content Include="env\negz.jpg" />
+    <Content Include="env\posx.jpg" />
+    <Content Include="env\posy.jpg" />
+    <Content Include="env\posz.jpg" />
+    <Content Include="gilmi.bmp" />
+    <Content Include="gilmi.obj" />
+    <Content Include="man.obj" />
+    <Content Include="man.jpg" />
+    <Content Include="model.bmp" />
+    <Content Include="model.obj" />
+    <Content Include="narsil.bmp" />
+    <Content Include="narsil.obj" />
+    <Content Include="powerRing.bmp" />
+    <Content Include="powerRing.obj" />
+    <Content Include="prueba.obj" />
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="env\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
