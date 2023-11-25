@@ -15,7 +15,6 @@ class Renderer(object):
 
 		glEnable(GL_DEPTH_TEST)
 		glEnable(GL_CULL_FACE)
-		# glGenerateMipmap(GL_TEXTURE_2D)
 		glViewport(0, 0, self.width, self.height)
 
 		self.model = None
@@ -26,6 +25,7 @@ class Renderer(object):
 
 		self.camPosition = glm.vec3(0,0,0)
 		self.camRotation = glm.vec3(0,0,0)
+		self.target = glm.vec3(0,0,0)
 		self.viewMatrix = self.getViewMatrix()
 
 		self.projectionMatrix = glm.perspective(glm.radians(60), self.width / self.height, 0.1, 1000)
@@ -89,7 +89,16 @@ class Renderer(object):
 			model.loadTexture(textureFile)
 		
 		return model
-		
+	
+	def addText(self, text, x, y, size = 24):
+		glEnable(GL_BLEND)
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+		font = pygame.font.Font("font/anirb.ttf", size)
+		textSurface = font.render(text, True, (255, 255, 66))
+		textData = pygame.image.tostring(textSurface, "RGBA", True)
+		glWindowPos2d(x, y)
+		glDrawPixels(textSurface.get_width(), textSurface.get_height(), GL_RGBA, GL_UNSIGNED_BYTE, textData)
+	
 	def setModel(self, model):
 		self.model = model
 
@@ -113,13 +122,14 @@ class Renderer(object):
 	def updateViewMatrix(self):
 		#self.viewMatrix = self.getViewMatrix()
 
-		self.viewMatrix = glm.lookAt(self.camPosition, self.model.position, glm.vec3(0,1,0))
+		self.viewMatrix = glm.lookAt(self.camPosition, self.target, glm.vec3(0,1,0))
 		
 	def render(self):
 		glClearColor(self.clearColor[0], self.clearColor[1], self.clearColor[2], 0.1)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 		
 		if self.envMap:
+			self.updateViewMatrix()
 			view = self.getViewMatrix()
 			self.envMap.render(view, self.projectionMatrix)
 

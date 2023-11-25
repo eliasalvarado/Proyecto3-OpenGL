@@ -10,10 +10,13 @@ layout (location = 2) in vec3 normals;
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
+uniform float time;
 
 out vec2 uvs;
 out vec3 outPosition;
 out vec3 outNormals;
+out vec3 originalPosition;
+out float angle;
 
 void main() {
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1);
@@ -21,6 +24,8 @@ void main() {
     outNormals = (modelMatrix * vec4(normals, 0)).xyz;
     outPosition = position;
     outNormals = normalize(outNormals);
+    originalPosition = position;
+    angle = 2 * position.y * tan(time);
 }
 
 '''
@@ -29,6 +34,7 @@ fragmentShader = '''
 #version 450 core
 
 layout (binding = 0) uniform sampler2D tex;
+uniform float time;
 
 in vec2 uvs;
 in vec3 outPosition;
@@ -59,6 +65,7 @@ void main() {
     intensity = min(1, intensity);
     intensity = max(0, intensity);
     fragColor = texture(tex, uvs) * intensity;
+    fragColor.a = 1;
 }
 
 '''
@@ -82,6 +89,7 @@ out vec2 uvs;
 out vec3 outPosition;
 out vec3 outNormals;
 out vec3 originalPosition;
+out float angle;
 
 float noise(vec3 x, vec3 y) {
     vec3 p = floor(x);
@@ -109,6 +117,7 @@ void main() {
     outNormals = (modelMatrix * vec4(normals, 0)).xyz;
     outNormals = normalize(outNormals);
     originalPosition = position;
+    angle = 2 * position.y * tan(time);
 }
 
 '''
@@ -158,6 +167,7 @@ uniform float time;
 out vec2 uvs;
 out vec3 outPosition;
 out vec3 outNormals;
+out vec3 originalPosition;
 out float angle;
 
 vec2 Break(vec2 vector, float angle)
@@ -184,6 +194,8 @@ void main() {
     outNormals = normalize(outNormals);
     outPosition = pos;
     uvs = texCoords;
+    originalPosition = position;
+    angle = 2 * position.y * tan(time);
 }
 '''
 
@@ -263,7 +275,7 @@ void main(void) {
     color.a -= 0.2 * pow(uvs.y, 8);
     color += pow(inv_uv, 8);
     
-    color.a -= 0.2;
+    color.a = 1;
 
     fragColor = vec4(color);
 }

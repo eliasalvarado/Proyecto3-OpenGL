@@ -29,8 +29,6 @@
     <Compile Include="Skybox.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="argonath.bmp" />
-    <Content Include="argonath.obj" />
     <Content Include="dardo.obj" />
     <Content Include="dardo.bmp" />
     <Content Include="env\negx.jpg" />
@@ -39,21 +37,25 @@
     <Content Include="env\posx.jpg" />
     <Content Include="env\posy.jpg" />
     <Content Include="env\posz.jpg" />
-    <Content Include="gilmi.bmp" />
-    <Content Include="gilmi.obj" />
-    <Content Include="man.obj" />
+    <Content Include="font\anirb.ttf" />
+    <Content Include="sauron.jpeg" />
     <Content Include="man.jpg" />
-    <Content Include="model.bmp" />
-    <Content Include="model.obj" />
     <Content Include="narsil.bmp" />
     <Content Include="narsil.obj" />
     <Content Include="powerRing.bmp" />
     <Content Include="powerRing.obj" />
-    <Content Include="prueba.obj" />
+    <Content Include="man.obj" />
     <Content Include="README.md" />
+    <Content Include="sounds\narsilSound.wav" />
+    <Content Include="sounds\ringSound.wav" />
+    <Content Include="sounds\dardoSound.wav" />
+    <Content Include="sauron.obj" />
+    <Content Include="sounds\sauronSound.wav" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="env\" />
+    <Folder Include="font\" />
+    <Folder Include="sounds\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

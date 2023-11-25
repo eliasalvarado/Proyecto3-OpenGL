@@ -25,15 +25,15 @@ void main()
 fragmentShader = '''
 #version 450 core
 
-layout (binding = 0) uniform samplerCube skybox;
+uniform samplerCube skybox;
 
-out vec4 FragColor;
+out vec4 fragColor;
 
 in vec3 TexCoords;
 
 void main()
 {    
-	FragColor = texture(skybox, TexCoords);
+	fragColor = texture(skybox, TexCoords);
 }
 '''
 
@@ -87,37 +87,15 @@ class Skybox(object):
 
 		self.VBO = glGenBuffers(1)
 		self.VAO = glGenVertexArrays(1)
-
-		self.position = glm.vec3(0,0,0)
-		self.rotation = glm.vec3(0,0,0)
-		self.scale = glm.vec3(1,1,1)
-		
-		self.loadEnvironmentMap(textureFile=textureFile)
-		#glDepthMask(GL_FALSE)
 	
 		self.activeShader = compileProgram(compileShader(vertexShader, GL_VERTEX_SHADER), compileShader(fragmentShader, GL_FRAGMENT_SHADER))
+		self.enviromentBuffer = glGenTextures(1)
+		glBindTexture(GL_TEXTURE_CUBE_MAP, self.enviromentBuffer)
 		
-	def getModelMatrix(self):
-		identity = glm.mat4(1)
-
-		translate = glm.translate(identity, self.position)
-
-		pitch = glm.rotate(identity, glm.radians(self.rotation.x), glm.vec3(1,0,0))
-		yaw = glm.rotate(identity, glm.radians(self.rotation.y), glm.vec3(0,1,0))
-		roll = glm.rotate(identity, glm.radians(self.rotation.z), glm.vec3(0,0,1))
-
-		rotation = pitch * yaw * roll
-
-		scale = glm.scale(identity, self.scale)
-
-		return translate * rotation * scale
+		self.loadEnvironmentMap(textureFile=textureFile)
 		
 	def loadEnvironmentMap(self, textureFile):
 		faces = ["posx.jpg", "negx.jpg","posy.jpg",  "negy.jpg", "posz.jpg", "negz.jpg", ]
-
-		enviromentBuffer = glGenTextures(1)
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, enviromentBuffer)
 		
 		for i in range(6):
 			image = pygame.image.load(textureFile + "/" + faces[i])
@@ -153,6 +131,8 @@ class Skybox(object):
 		
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * arrayDim, ctypes.c_void_p(0))
 		glEnableVertexAttribArray(0)
+		
+		glBindTexture(GL_TEXTURE_CUBE_MAP, self.enviromentBuffer)
 		
 		glDrawArrays(GL_TRIANGLES, 0, 36)
 		
