@@ -118,6 +118,35 @@ void main() {
 
 '''
 
+glowFragment = '''
+// Fuente: https://stackoverflow.com/questions/8166384/how-to-get-a-glow-shader-effect-in-opengl-es-2-0
+#version 450 core
+
+layout (binding = 0) uniform sampler2D tex;
+uniform float time;
+uniform vec3 camPosition;
+uniform samplerCube skybox;
+
+in vec2 uvs;
+in vec3 outPosition;
+in vec3 outNormals;
+
+out vec4 fragColor;
+
+void main()
+{
+    vec3 color = vec3(sin(time), cos(time), sin(time) * cos(time));
+
+    float shininess = 50.0;
+    float glow = sin(time) + cos(time);
+    vec3 dir = normalize(-outPosition);
+    vec3 halfVec = normalize(dir + outNormals);
+    float specular = max(0, dot(outNormals, halfVec));
+    float glowFac = (shininess + 2) * pow(specular, shininess);
+
+    fragColor = vec4( glow * (0.1 + color.rgb * glowFac * 0.5), 1.0 );
+}
+'''
 
 distortionVertex = '''
 #version 450 core
