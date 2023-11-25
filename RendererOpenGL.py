@@ -78,7 +78,6 @@ while isRunning:
 
     keys = pg.key.get_pressed()
     deltaTime = clock.tick(60) / 1000
-    renderer.target = models[currModel].position
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -132,29 +131,25 @@ while isRunning:
 
     if keys[K_RIGHT]:
         angle += 1
-        renderer.camPosition.x = renderer.target.x + radio * sin(angle * pi / 180)
-        renderer.camPosition.z = renderer.target.z + radio * cos(angle * pi / 180)
+        renderer.camPosition.x = renderer.model.position.x + radio * sin(angle * pi / 180)
+        renderer.camPosition.z = renderer.model.position.z + radio * cos(angle * pi / 180)
         #renderer.camRotation.y += deltaTime * speed * 10
     elif keys[K_LEFT]:
         angle -= 1
-        renderer.camPosition.x = renderer.target.x + radio * sin(angle * pi /180)
-        renderer.camPosition.z = renderer.target.z + radio * cos(angle * pi /180)
+        renderer.camPosition.x = renderer.model.position.x + radio * sin(angle * pi /180)
+        renderer.camPosition.z = renderer.model.position.z + radio * cos(angle * pi /180)
         #renderer.camRotation.y -= deltaTime * speed * 10
     if keys[K_UP]:
         angle += 1
-        renderer.camPosition.y = renderer.target.x + radio * sin(angle * pi /180)
-        renderer.camPosition.z = renderer.target.z + radio * cos(angle * pi /180)
+        renderer.camPosition.y = renderer.model.position.x + radio * sin(angle * pi /180)
+        renderer.camPosition.z = renderer.model.position.z + radio * cos(angle * pi /180)
         #renderer.camRotation.x += deltaTime * speed * 10
     elif keys[K_DOWN]:
         angle -= 1
-        renderer.camPosition.y = renderer.target.x + radio * sin(angle * pi /180)
-        renderer.camPosition.z = renderer.target.z + radio * cos(angle * pi /180)
+        renderer.camPosition.y = renderer.model.position.x + radio * sin(angle * pi /180)
+        renderer.camPosition.z = renderer.model.position.z + radio * cos(angle * pi /180)
         #renderer.camRotation.x -= deltaTime * speed * 10
-    
-    if keys[K_RIGHT] or keys[K_LEFT]:
-        #print(renderer.camPosition.xyz)
-        #print(abs(renderer.model.position.z - renderer.camPosition.z))
-        pass
+
     
     # Movimiento de la camara
     if keys[K_a]:
@@ -180,11 +175,6 @@ while isRunning:
         renderer.camRotation.x -= deltaTime * speed ** 2
     
     renderer.time += deltaTime
-    
-    # print("position")
-    # print(renderer.camPosition)
-    # print("rotation")
-    # print(renderer.camRotation)
         
     renderer.updateViewMatrix()
     renderer.render()

@@ -25,7 +25,6 @@ class Renderer(object):
 
 		self.camPosition = glm.vec3(0,0,0)
 		self.camRotation = glm.vec3(0,0,0)
-		self.target = glm.vec3(0,0,0)
 		self.viewMatrix = self.getViewMatrix()
 
 		self.projectionMatrix = glm.perspective(glm.radians(60), self.width / self.height, 0.1, 1000)
@@ -121,7 +120,7 @@ class Renderer(object):
 	
 	def updateViewMatrix(self):
 		#self.viewMatrix = self.getViewMatrix()
-		self.viewMatrix = glm.lookAt(self.camPosition, self.target, glm.vec3(0,1,0))
+		self.viewMatrix = glm.lookAt(self.camPosition, self.model.position, glm.vec3(0,1,0))
 		self.envMap.updateView(self.viewMatrix)
 		
 	def render(self):
