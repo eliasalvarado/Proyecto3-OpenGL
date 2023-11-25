@@ -2,7 +2,7 @@
 
 Este proyecto se basó en la implementación de mostrar en pantalla OBJ, modelos 3D. Para ello se utilizó PyGame para desplegar la pantalla y OpenGL para poder renderizar los modelos.
 En pantalla se despliega un objeto a la vez con un fondo predeterminado. Se pueen realizar cambios de vertex y fragments shaders, también se puede mover la posición de la cámara y su rotación. Así mismo, se puede cambiar de modelo.
-En este enlace puede visualizar el funcionamiento del proyecto.
+En este [enlace]([url](https://youtu.be/Ut3-4Npns-o)) puede visualizar el funcionamiento del proyecto.
 
 ## Movimientos:
 - ### Posición de la cámara
