@@ -144,6 +144,9 @@ class Renderer(object):
 			
 			resolution = glm.vec2(self.width, self.height)
 			glUniform2fv(glGetUniformLocation(self.activeShader, "resolution"), 1, GL_FALSE, glm.value_ptr(resolution))
+			
+			glUniform3fv(glGetUniformLocation(self.activeShader, "camPosition"), 1, GL_FALSE, glm.value_ptr(self.camPosition))
+			
 
 		if self.model:
 			if self.activeShader:

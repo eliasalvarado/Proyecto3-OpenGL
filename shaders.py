@@ -71,6 +71,53 @@ void main() {
 '''
 
 ###############################################################################################
+reflectionShader = '''
+// Fuente: https://learnopengl.com/Advanced-OpenGL/Cubemaps
+#version 450 core
+
+layout (binding = 0) uniform sampler2D tex;
+uniform float time;
+uniform vec3 camPosition;
+uniform samplerCube skybox;
+
+in vec2 uvs;
+in vec3 outPosition;
+in vec3 outNormals;
+
+out vec4 fragColor;
+
+void main() {
+    vec3 dir = normalize(outPosition - camPosition);
+    vec3 reflectVec = reflect(dir, normalize(outNormals));
+    fragColor = vec4(texture(skybox, reflectVec).rgb, 1.0);
+}
+
+'''
+
+refractionShader = '''
+// Fuente: https://learnopengl.com/Advanced-OpenGL/Cubemaps
+#version 450 core
+
+layout (binding = 0) uniform sampler2D tex;
+uniform float time;
+uniform vec3 camPosition;
+uniform samplerCube skybox;
+
+in vec2 uvs;
+in vec3 outPosition;
+in vec3 outNormals;
+
+out vec4 fragColor;
+
+void main() {
+    float ratio = 1.00 / 1.52;
+    vec3 I = normalize(outPosition - camPosition);
+    vec3 R = refract(I, normalize(outNormals), ratio);
+    fragColor = vec4(texture(skybox, R).rgb, 1.0);
+}
+
+'''
+
 
 distortionVertex = '''
 #version 450 core

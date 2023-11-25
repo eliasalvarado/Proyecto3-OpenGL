@@ -50,7 +50,7 @@ models = [model1, model2, model3, model4]
 currModel = 0
 vertexs = [vertexShader, distortionVertex, clockVertex]
 currVertex = 0
-fragments = [fragmentShaderWithLight, colorFulFragment, theMatrixFragment, powerFragment, shininessFragment]
+fragments = [fragmentShaderWithLight, colorFulFragment, theMatrixFragment, powerFragment, shininessFragment, reflectionShader, refractionShader]
 currFrag= 0
 envMusic = ["narsilSound.wav", "sauronSound.wav", "dardoSound.wav", "ringSound.wav"]
 
