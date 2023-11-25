@@ -121,17 +121,17 @@ class Renderer(object):
 	
 	def updateViewMatrix(self):
 		#self.viewMatrix = self.getViewMatrix()
-
 		self.viewMatrix = glm.lookAt(self.camPosition, self.target, glm.vec3(0,1,0))
+		self.envMap.updateView(self.viewMatrix)
 		
 	def render(self):
 		glClearColor(self.clearColor[0], self.clearColor[1], self.clearColor[2], 0.1)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 		
 		if self.envMap:
-			self.updateViewMatrix()
 			view = self.getViewMatrix()
-			self.envMap.render(view, self.projectionMatrix)
+			self.envMap.matrix(view, self.projectionMatrix)
+			self.envMap.render()
 
 		if self.activeShader:
 			glUseProgram(self.activeShader)

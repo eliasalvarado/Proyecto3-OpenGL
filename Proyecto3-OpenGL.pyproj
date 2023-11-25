@@ -39,12 +39,10 @@
     <Content Include="env\posz.jpg" />
     <Content Include="font\anirb.ttf" />
     <Content Include="sauron.jpeg" />
-    <Content Include="man.jpg" />
     <Content Include="narsil.bmp" />
     <Content Include="narsil.obj" />
     <Content Include="powerRing.bmp" />
     <Content Include="powerRing.obj" />
-    <Content Include="man.obj" />
     <Content Include="README.md" />
     <Content Include="sounds\narsilSound.wav" />
     <Content Include="sounds\ringSound.wav" />

@@ -110,17 +110,25 @@ class Skybox(object):
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE)
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE)
 		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE)
-		
-	def render(self, viewMatrix, projectionMatrix):
+	
+	def matrix(self, view, proj):
+		self.viewMatrix = glm.mat4(glm.mat3(view))
+		self.projectionMatrix = proj
+	
+	def updateView(self, view):
+		self.viewMatrix = glm.mat4(glm.mat3(view))
+	
+	def render(self):
 		#self.activeShader = compileProgram(compileShader(vertexShader, GL_VERTEX_SHADER), compileShader(fragmentShader, GL_FRAGMENT_SHADER))
 		
 		glDepthMask(GL_FALSE)
 		glUseProgram(self.activeShader)
 		
-		skyeVM = glm.mat4(glm.mat3(viewMatrix))
+		#print("view")
+		#print(self.viewMatrix)
 		
-		glUniformMatrix4fv(glGetUniformLocation(self.activeShader, "viewMatrix"), 1, GL_FALSE, glm.value_ptr(skyeVM))
-		glUniformMatrix4fv(glGetUniformLocation(self.activeShader, "projectionMatrix"), 1, GL_FALSE, glm.value_ptr(projectionMatrix))
+		glUniformMatrix4fv(glGetUniformLocation(self.activeShader, "viewMatrix"), 1, GL_FALSE, glm.value_ptr(self.viewMatrix))
+		glUniformMatrix4fv(glGetUniformLocation(self.activeShader, "projectionMatrix"), 1, GL_FALSE, glm.value_ptr(self.projectionMatrix))
 		
 		glBindBuffer(GL_ARRAY_BUFFER, self.VBO)
 		glBindVertexArray(self.VAO)
