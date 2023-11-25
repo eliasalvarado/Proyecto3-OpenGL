@@ -1,26 +1,40 @@
-# OGL1--3D-Models-And-Transforms
+# Proyecto 3: OpenGL
 
-Utilizando OpenGL se implementaron dos vertex shaders y cuatro fragment shaders.
+Este proyecto se basó en la implementación de mostrar en pantalla OBJ, modelos 3D. Para ello se utilizó PyGame para desplegar la pantalla y OpenGL para poder renderizar los modelos.
+En pantalla se despliega un objeto a la vez con un fondo predeterminado. Se pueen realizar cambios de vertex y fragments shaders, también se puede mover la posición de la cámara y su rotación. Así mismo, se puede cambiar de modelo.
+En este enlace puede visualizar el funcionamiento del proyecto.
 
-## Distortion Vertex Shader:
-![image](https://github.com/eliasalvarado/Lab4-ShadersII/assets/77988653/55b6a2d8-f87c-45c6-87bb-052dac084678)
+## Movimientos:
+- ### Posición de la cámara
+  Para cambiar la posición de la cámara puede utilizar las teclas W, A, S, D. Para realizar los movimientos arriba, izquierda, abajo, derecha; respectivamente. Además, para acercar y alejar la cámara utilice el scroll de su mouse.
+- ### Movimiento sobre el modelo
+  Para realizar un movimiento circular sobre el modelo utilice las flechas del teclado.
+- ### Rotación del modelo
+  Para rotar el modelo en cualquier dirección, con el clic derecho presionado, realice el movimiento deseado en la pantalla.
 
-## Colorful Fragment Shader:
-![image](https://github.com/eliasalvarado/Lab4-ShadersII/assets/77988653/cf7def59-cb63-43f0-b41c-7339a02e1e74)
+## Configuración:
+- ### Cambiar de modelo
+  Para cambiar de modelo presione la tecla SPACE.
+- ### Cambiar de vertex shader
+  Para cambiar de vertex shader presione la tecla Q
+- ### Cambiar de fragment shader
+  Para cambiar de fragment shader presione la tecla E
 
-## Clock Vertex Shader:
-![image](https://github.com/eliasalvarado/Lab4-ShadersII/assets/77988653/f59e9a10-83f2-467e-a505-75c80eabed39)
+### Vertex Shaders:
+- Distortion
+- Clock
 
-## The Matrix Fragment Shader:
-![image](https://github.com/eliasalvarado/Lab4-ShadersII/assets/77988653/b1e0bcd8-93aa-41e7-9c2d-0ada3550c50d)
+### Fragments Shaders:
+- Colorful
+- The Matrix
+- Power
+- Shininess
+- Reflection
+- Refraction
+- Glow effect
 
-## Power Fragment Shader:
-![image](https://github.com/eliasalvarado/Lab4-ShadersII/assets/77988653/99673c29-7637-45f6-9738-afff0c18c8cf)
 
-## Shininess Fragment Shader:
-![image](https://github.com/eliasalvarado/Lab4-ShadersII/assets/77988653/09780005-0391-4e60-a347-35c3d74f535e)
-
-### Tecnología utilizada:
+## Tecnología utilizada:
 
 | Nombre | Versión |
 | ------------- | ------------- |
